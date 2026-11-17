@@ -67,9 +67,3 @@ com.example.movie_catalog
 4. Run the `app` configuration on an emulator or device.
 
 > `local.properties` is git-ignored, so the API key is never committed.
-
-## Screenshots
-
-| Genres | Movies | Detail | Reviews |
-| ------ | ------ | ------ | ------- |
-| _add screenshot_ | _add screenshot_ | _add screenshot_ | _add screenshot_ |
