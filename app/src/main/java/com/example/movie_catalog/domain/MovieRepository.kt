@@ -9,7 +9,7 @@ import com.example.movie_catalog.domain.model.Review
 interface MovieRepository {
     suspend fun getGenreMovie() : Resource<List<Genre>>
     suspend fun getMovieByGenre(genreId : Int, page : Int) : Resource<PagedData<Movie>>
-    suspend fun getMovieDetail(movieId : Int) : Result<MovieDetail>
+    suspend fun getMovieDetail(movieId : Int) : Resource<MovieDetail>
     suspend fun getReviews(movieId : Int, page : Int) : Resource<PagedData<Review>>
-    suspend fun getTrailerKey(movieId : Int) : Result<String?>
+    suspend fun getTrailerKey(movieId : Int) : Resource<String?>
 }

@@ -1,5 +1,6 @@
 package com.example.movie_catalog.data
 
+import com.example.movie_catalog.data.mapper.toDomain
 import com.example.movie_catalog.data.remote.ApiService
 import com.example.movie_catalog.domain.MovieRepository
 import com.example.movie_catalog.domain.Resource
@@ -16,30 +17,22 @@ class MovieRepositoryImpl(
     private val apiService: ApiService
 ) : MovieRepository {
 
-    override suspend fun getGenreMovie(): Resource<List<Genre>> = safeApiCall { apiService.getGenreMovie().genres.map {  } }
+    override suspend fun getGenreMovie(): Resource<List<Genre>> = safeApiCall { apiService.getGenreMovie().genres.map { it.toDomain()  } }
 
 
     override suspend fun getMovieByGenre(
         genreId: Int,
         page: Int
-    ): Resource<PagedData<Movie>> {
-        TODO("Not yet implemented")
-    }
+    ): Resource<PagedData<Movie>>  = safeApiCall { apiService.getMovieByGenre(genreId, page).toDomain() }
 
-    override suspend fun getMovieDetail(movieId: Int): Result<MovieDetail> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getMovieDetail(movieId: Int): Resource<MovieDetail> =  safeApiCall { apiService.getMovieDetail(movieId).toDomain() }
 
     override suspend fun getReviews(
         movieId: Int,
         page: Int
-    ): Resource<PagedData<Review>> {
-        TODO("Not yet implemented")
-    }
+    ): Resource<PagedData<Review>> = safeApiCall { apiService.getReviews(movieId, page).toDomain() }
 
-    override suspend fun getTrailerKey(movieId: Int): Result<String?> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getTrailerKey(movieId: Int): Resource<String?> = safeApiCall { apiService.getVideos(movieId).results.firstOrNull { it.site == "YouTube" && it.type == "Trailer" }?.key }
 
     private suspend fun <T> safeApiCall(call: suspend () -> T): Resource<T> =
         try {
