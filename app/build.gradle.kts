@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 val localProperties = Properties().apply {
@@ -48,6 +49,12 @@ android {
     }
 }
 
+kotlin {
+    compilerOptions {
+        optIn.add("androidx.compose.material3.ExperimentalMaterial3Api")
+    }
+}
+
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
@@ -57,9 +64,11 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.ui)
     testImplementation(libs.junit)
 
     // Navigation
+    implementation(libs.kotlinx.serialization.core)
     implementation(libs.androidx.navigation.compose)
 
     // Hilt
@@ -74,6 +83,13 @@ dependencies {
 
     // Image
     implementation(libs.coil.compose)
+
+    // material icon
+    implementation(libs.androidx.compose.material.icons.core)
+    implementation(libs.androidx.compose.material.icons.extended)
+
+    // youtube
+    implementation(libs.youtube.player)
 
 
     androidTestImplementation(platform(libs.androidx.compose.bom))
