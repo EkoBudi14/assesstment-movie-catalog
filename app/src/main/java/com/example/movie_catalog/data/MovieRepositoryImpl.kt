@@ -11,9 +11,10 @@ import com.example.movie_catalog.domain.model.PagedData
 import com.example.movie_catalog.domain.model.Review
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 import kotlin.coroutines.cancellation.CancellationException
 
-class MovieRepositoryImpl(
+class MovieRepositoryImpl @Inject constructor(
     private val apiService: ApiService
 ) : MovieRepository {
 
