@@ -8,6 +8,7 @@ import androidx.navigation.toRoute
 import com.example.movie_catalog.ui.detail.DetailScreen
 import com.example.movie_catalog.ui.genre.GenreScreen
 import com.example.movie_catalog.ui.movie.MovieListScreen
+import com.example.movie_catalog.ui.review.ReviewScreen
 
 
 @Composable
@@ -39,6 +40,10 @@ fun AppNavGraph() {
                 onBack = { navController.popBackStack() },
                 onReviewsClick = { movieId -> navController.navigate(ReviewRoute(movieId)) }
             )
+        }
+
+        composable<ReviewRoute> {
+            ReviewScreen(onBack = { navController.popBackStack() })
         }
     }
 }

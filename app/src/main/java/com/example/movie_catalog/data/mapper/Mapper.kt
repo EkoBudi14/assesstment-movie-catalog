@@ -21,7 +21,7 @@ fun GenreItem.toDomain() = Genre(
 fun MovieItem.toDomain() = Movie(
     id = id,
     title = title,
-    posterPath = posterPath,
+    posterPath = posterPath ?: "",
     releaseDate = releaseDate,
     rating = voteAverage
 )
@@ -29,7 +29,7 @@ fun MovieItem.toDomain() = Movie(
 fun MovieResponse.toDomain() = PagedData(
     page = page,
     totalPages = totalPages,
-    items = result.map { it.toDomain() }
+    items = results.map { it.toDomain() }
 )
 
 fun MovieDetailResponse.toDomain() = MovieDetail(
